@@ -12,6 +12,7 @@
 }
 .color-picker-wrapper.body {
 	position: absolute;
+	z-index: 9999;
 }
 .color-picker-row {
 	display: inline-block;
