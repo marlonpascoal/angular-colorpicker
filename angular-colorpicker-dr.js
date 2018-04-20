@@ -199,6 +199,17 @@
 								element.val(color);
 							}
 						});
+						
+						scope.$watch("ngModel", function(_new, _old) {
+							// console.log("Changed"); 
+							// ngModel.$setViewValue(color);
+							var color = _new;
+							if (color != undefined && scope.colorMe !== undefined && scope.colorMe === 'true') {
+								element[0].style.backgroundColor = color;
+								element[0].value = '';
+							}
+						 });
+						
 						angular.element(document.body).append(elementColorPicker);
 
 						element.bind("click", function (ev) {
