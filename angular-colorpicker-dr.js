@@ -174,15 +174,17 @@
 					angular.element(document.body).append(elementColorPicker);
 
 					elementTinyTrigger.bind("click", function (ev) {
-						var wrapper = closestFunc(angular.element(ev.target), 'color-picker-wrapper'),
-							top = wrapper[0].getBoundingClientRect().top,
-							height = wrapper[0].getBoundingClientRect().height;
-						top = top + $window.pageYOffset;
+						if (angular.element(ev.target).prop('readonly') == false) { 
+							var wrapper = closestFunc(angular.element(ev.target), 'color-picker-wrapper'),
+								top = wrapper[0].getBoundingClientRect().top,
+								height = wrapper[0].getBoundingClientRect().height;
+							top = top + $window.pageYOffset;
 
-						elementColorPicker.removeClass('hide');
-						elementColorPicker[0].style.top = top + height + 'px';
-						elementColorPicker[0].style.left = wrapper[0].getBoundingClientRect().left + 'px';
-						ev.stopPropagation();
+							elementColorPicker.removeClass('hide');
+							elementColorPicker[0].style.top = top + height + 'px';
+							elementColorPicker[0].style.left = wrapper[0].getBoundingClientRect().left + 'px';
+							ev.stopPropagation();
+						}
 					});
 
 				} else {
@@ -213,15 +215,17 @@
 						angular.element(document.body).append(elementColorPicker);
 
 						element.bind("click", function (ev) {
-							//show color picker beneath the input
-							var top = ev.target.getBoundingClientRect().top,
-								height = ev.target.getBoundingClientRect().height;
-							top = top + $window.pageYOffset;
+							if (angular.element(ev.target).prop('readonly') == false) { 
+								//show color picker beneath the input
+								var top = ev.target.getBoundingClientRect().top,
+									height = ev.target.getBoundingClientRect().height;
+								top = top + $window.pageYOffset;
 
-							elementColorPicker.removeClass('hide');
-							elementColorPicker[0].style.top = top + height + 'px';
-							elementColorPicker[0].style.left = ev.target.getBoundingClientRect().left + 'px';
-							ev.stopPropagation();
+								elementColorPicker.removeClass('hide');
+								elementColorPicker[0].style.top = top + height + 'px';
+								elementColorPicker[0].style.left = ev.target.getBoundingClientRect().left + 'px';
+								ev.stopPropagation();
+							}
 						});
 
 						elementTinyTrigger = $compile(templateTinyTrigger)(scope);
